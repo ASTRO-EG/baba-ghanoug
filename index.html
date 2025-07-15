@@ -20,6 +20,7 @@
       --success: #4CAF50;
       --card-bg: rgba(255, 255, 255, 0.95);
       --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      --input-color: #5d4037;
     }
     
     * {
@@ -48,6 +49,7 @@
         --light: #1a120b;
         --dark: #f8e9d4;
         --card-bg: rgba(30, 30, 30, 0.95);
+        --input-color: #ffd8a6;
       }
       
       body {
@@ -61,7 +63,7 @@
       border-radius: 20px;
       padding: 30px;
       box-shadow: var(--shadow);
-      max-width: 550px;
+      max-width: 650px;
       width: 100%;
       margin: 20px auto;
       position: relative;
@@ -151,7 +153,8 @@
       border: 2px solid #ddd;
       border-radius: 12px;
       background: rgba(255, 255, 255, 0.8);
-      color: var(--dark);
+      color: var(--input-color);
+      font-weight: bold;
       outline: none;
     }
     
@@ -264,6 +267,8 @@
       font-size: 16px;
       padding-top: 15px;
       border-top: 1px solid rgba(139, 69, 19, 0.1);
+      display: flex;
+      justify-content: space-between;
     }
     
     /* تأثيرات للنتيجة */
@@ -322,6 +327,196 @@
         font-size: 16px;
         padding: 10px 12px;
       }
+      
+      .footer {
+        flex-direction: column;
+        gap: 10px;
+      }
+    }
+    
+    /* واجهة إدارة المكونات */
+    .manage-btn {
+      background: linear-gradient(135deg, #6a4c93, #8e44ad);
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 600;
+    }
+    
+    .manage-btn:hover {
+      background: linear-gradient(135deg, #5a3c83, #7d34a8);
+      transform: translateY(-2px);
+    }
+    
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.7);
+      overflow: auto;
+      justify-content: center;
+      align-items: center;
+    }
+    
+    .modal-content {
+      background: var(--card-bg);
+      margin: 5% auto;
+      padding: 30px;
+      border-radius: 20px;
+      width: 90%;
+      max-width: 700px;
+      max-height: 80vh;
+      overflow-y: auto;
+      position: relative;
+      box-shadow: 0 10px 50px rgba(0, 0, 0, 0.3);
+      border: 2px solid var(--accent);
+    }
+    
+    .close-btn {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      font-size: 30px;
+      color: var(--primary);
+      cursor: pointer;
+    }
+    
+    .close-btn:hover {
+      color: var(--accent);
+    }
+    
+    .modal-title {
+      text-align: center;
+      margin: 15px 0 30px;
+      color: var(--primary);
+      font-size: 28px;
+    }
+    
+    .ingredient-form {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-bottom: 30px;
+      padding: 20px;
+      background: rgba(255, 248, 220, 0.3);
+      border-radius: 15px;
+    }
+    
+    .ingredient-form input {
+      flex: 1;
+      min-width: 200px;
+      padding: 12px 15px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-size: 16px;
+      font-family: 'Tajawal', sans-serif;
+    }
+    
+    .add-btn {
+      background: var(--success);
+      color: white;
+      border: none;
+      padding: 12px 25px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 16px;
+    }
+    
+    .add-btn:hover {
+      background: #3d8b40;
+    }
+    
+    .ingredients-list {
+      margin-top: 20px;
+    }
+    
+    .ingredient-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px;
+      margin-bottom: 15px;
+      background: rgba(255, 255, 255, 0.5);
+      border-radius: 12px;
+      border-left: 4px solid var(--secondary);
+    }
+    
+    .dark-mode .ingredient-item {
+      background: rgba(50, 50, 50, 0.3);
+    }
+    
+    .ingredient-info {
+      flex: 1;
+    }
+    
+    .ingredient-name {
+      font-weight: bold;
+      font-size: 18px;
+      color: var(--primary);
+    }
+    
+    .ingredient-amount {
+      color: var(--dark);
+      font-size: 16px;
+    }
+    
+    .ingredient-actions {
+      display: flex;
+      gap: 10px;
+    }
+    
+    .edit-btn, .delete-btn {
+      padding: 8px 15px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    
+    .edit-btn {
+      background: #ffc107;
+      color: #333;
+    }
+    
+    .delete-btn {
+      background: #f44336;
+      color: white;
+    }
+    
+    .edit-btn:hover, .delete-btn:hover {
+      opacity: 0.9;
+    }
+    
+    .save-btn {
+      background: linear-gradient(135deg, #2e7d32, #4CAF50);
+      color: white;
+      padding: 12px 25px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 16px;
+      margin-top: 20px;
+      display: block;
+      margin-left: auto;
+    }
+    
+    .save-btn:hover {
+      background: linear-gradient(135deg, #1b5e20, #388e3c);
     }
   </style>
 </head>
@@ -349,10 +544,56 @@
     
     <div class="footer">
       <p>© 2023 وصفات الشيف | جميع الحقوق محفوظة</p>
+      <button class="manage-btn" onclick="openModal()">
+        <i class="fas fa-cogs"></i> إدارة المكونات
+      </button>
     </div>
   </div>  
   
+  <!-- نافذة إدارة المكونات -->
+  <div id="ingredientsModal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn" onclick="closeModal()">&times;</span>
+      <h2 class="modal-title">إدارة مكونات بابا غنوج</h2>
+      
+      <div class="ingredient-form">
+        <input type="text" id="ingredientName" placeholder="اسم المكون (مثال: زيت زيتون)">
+        <input type="number" id="ingredientAmount" placeholder="الكمية لكل 100 كيلو (مثال: 2.5)">
+        <button class="add-btn" onclick="addIngredient()">
+          <i class="fas fa-plus"></i> إضافة مكون
+        </button>
+      </div>
+      
+      <div class="ingredients-list" id="ingredientsList">
+        <!-- سيتم ملؤها بالمكونات -->
+      </div>
+      
+      <button class="save-btn" onclick="saveIngredients()">
+        <i class="fas fa-save"></i> حفظ التغييرات
+      </button>
+    </div>
+  </div>
+  
   <script>
+    // بيانات المكونات الافتراضية
+    let المقادير = {
+      "طحينة": 22.0,
+      "عصير ليمون": 6.5,
+      "ثوم": 0.750,
+      "كمون": 0.800,
+      "ملح": 1.400,
+      "شطة": 0.120
+    };
+    
+    // ثوابت أخرى
+    const زبادي_علب_لكل_100كيلو = 30;
+    
+    // تحميل البيانات المحفوظة عند بدء التحميل
+    document.addEventListener('DOMContentLoaded', function() {
+      loadIngredients();
+    });
+    
+    // دالة الحساب
     function احسب() {
       const كمية = parseFloat(document.getElementById('quantity').value);
       if (isNaN(كمية) || كمية <= 0) {
@@ -361,19 +602,11 @@
       }
 
       const نسبة = كمية / 100;
-      const وزن_العلبة = 0.6667;
-      const زبادي_علب = Math.round(30 * نسبة * 100) / 100;
-
-      const المقادير = {
-        "طحينة": 22.0,
-        "عصير ليمون": 6.5,
-        "ثوم": 0.750,
-        "كمون": 0.800,
-        "ملح": 1.400,
-        "شطة": 0.120
-      };
+      const زبادي_علب = Math.round(زبادي_علب_لكل_100كيلو * نسبة * 100) / 100;
 
       let النتيجة = `<h3><i class="fas fa-list"></i> المقادير المطلوبة لـ ${كمية} كيلو بابا غنوج:</h3>`;
+      
+      // حساب كل مكون
       for (let مكون in المقادير) {
         let قيمة = المقادير[مكون] * نسبة;
         النتيجة += `
@@ -389,6 +622,7 @@
         `;
       }
       
+      // إضافة الزبادي
       النتيجة += `
         <div class="item">
           <div class="ingredient">
@@ -401,6 +635,7 @@
         </div>
       `;
 
+      // حساب لكل حلة (ثلث الكمية)
       النتيجة += `<h3><i class="fas fa-utensils"></i> المقادير لكل حلة (ثلث الكمية):</h3>`;
       for (let مكون in المقادير) {
         let قيمة = (المقادير[مكون] * نسبة) / 3;
@@ -417,6 +652,7 @@
         `;
       }
       
+      // الزبادي لكل حلة
       النتيجة += `
         <div class="item">
           <div class="ingredient">
@@ -435,6 +671,107 @@
       
       // تمرير للنتيجة
       out.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+    
+    // فتح نافذة إدارة المكونات
+    function openModal() {
+      document.getElementById('ingredientsModal').style.display = 'flex';
+      renderIngredientsList();
+    }
+    
+    // إغلاق نافذة إدارة المكونات
+    function closeModal() {
+      document.getElementById('ingredientsModal').style.display = 'none';
+    }
+    
+    // عرض قائمة المكونات في النافذة
+    function renderIngredientsList() {
+      const list = document.getElementById('ingredientsList');
+      list.innerHTML = '';
+      
+      for (let مكون in المقادير) {
+        const item = document.createElement('div');
+        item.className = 'ingredient-item';
+        item.innerHTML = `
+          <div class="ingredient-info">
+            <div class="ingredient-name">${مكون}</div>
+            <div class="ingredient-amount">${المقادير[مكون]} كجم لكل 100 كيلو</div>
+          </div>
+          <div class="ingredient-actions">
+            <button class="edit-btn" onclick="editIngredient('${مكون}')">
+              <i class="fas fa-edit"></i> تعديل
+            </button>
+            <button class="delete-btn" onclick="deleteIngredient('${مكون}')">
+              <i class="fas fa-trash"></i> حذف
+            </button>
+          </div>
+        `;
+        list.appendChild(item);
+      }
+    }
+    
+    // إضافة مكون جديد
+    function addIngredient() {
+      const nameInput = document.getElementById('ingredientName');
+      const amountInput = document.getElementById('ingredientAmount');
+      
+      const name = nameInput.value.trim();
+      const amount = parseFloat(amountInput.value);
+      
+      if (!name || isNaN(amount) || amount <= 0) {
+        alert('الرجاء إدخال اسم مكون وكمية صحيحة');
+        return;
+      }
+      
+      المقادير[name] = amount;
+      
+      // مسح حقول الإدخال
+      nameInput.value = '';
+      amountInput.value = '';
+      
+      // تحديث القائمة
+      renderIngredientsList();
+      
+      // إعادة التركيز على حقل الاسم
+      nameInput.focus();
+    }
+    
+    // تعديل مكون
+    function editIngredient(ingredientName) {
+      const newName = prompt('الرجاء إدخال الاسم الجديد للمكون:', ingredientName);
+      if (!newName) return;
+      
+      const newAmount = parseFloat(prompt('الرجاء إدخال الكمية الجديدة لكل 100 كيلو:', المقادير[ingredientName]));
+      if (isNaN(newAmount) return;
+      
+      // حذف القديم وإضافة الجديد
+      delete المقادير[ingredientName];
+      المقادير[newName] = newAmount;
+      
+      renderIngredientsList();
+    }
+    
+    // حذف مكون
+    function deleteIngredient(ingredientName) {
+      if (confirm(`هل أنت متأكد من حذف "${ingredientName}"؟`)) {
+        delete المقادير[ingredientName];
+        renderIngredientsList();
+      }
+    }
+    
+    // حفظ المكونات في localStorage
+    function saveIngredients() {
+      localStorage.setItem('baba_ghanoush_ingredients', JSON.stringify(المقادير));
+      alert('تم حفظ التغييرات بنجاح!');
+      closeModal();
+    }
+    
+    // تحميل المكونات من localStorage
+    function loadIngredients() {
+      const savedIngredients = localStorage.getItem('baba_ghanoush_ingredients');
+      if (savedIngredients) {
+        المقادير = JSON.parse(savedIngredients);
+      }
     }
     
     // الكشف عن وضع الليل وإضافة كلاس إذا كان مفعلاً

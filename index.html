@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>حاسبة مقادير بابا غنوج | كافتيريا ابوحيدر</title>
+  <title>حاسبة مقادير بابا غنوج | كافتيريا أبو حيدر</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&family=Tajawal:wght@300;400;700&display=swap" rel="stylesheet">
@@ -79,6 +79,7 @@
       width: 100%;
       height: 8px;
       background: linear-gradient(90deg, var(--primary), var(--accent));
+      border-radius: 2px;
     }
     
     .header {
@@ -269,6 +270,7 @@
       border-top: 1px solid rgba(139, 69, 19, 0.1);
       display: flex;
       justify-content: space-between;
+      align-items: center;
     }
     
     /* تأثيرات للنتيجة */
@@ -349,8 +351,27 @@
       font-weight: 600;
     }
     
+    .history-btn {
+      background: linear-gradient(135deg, #3a7bd5, #00d2ff);
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 600;
+    }
+    
     .manage-btn:hover {
       background: linear-gradient(135deg, #5a3c83, #7d34a8);
+      transform: translateY(-2px);
+    }
+    
+    .history-btn:hover {
+      background: linear-gradient(135deg, #2a6bc5, #00c2ef);
       transform: translateY(-2px);
     }
     
@@ -452,7 +473,16 @@
       border-left: 4px solid var(--secondary);
     }
     
-    .dark-mode .ingredient-item {
+    .history-item {
+      padding: 15px;
+      margin-bottom: 15px;
+      background: rgba(255, 255, 255, 0.5);
+      border-radius: 12px;
+      border-left: 4px solid var(--secondary);
+    }
+    
+    .dark-mode .ingredient-item,
+    .dark-mode .history-item {
       background: rgba(50, 50, 50, 0.3);
     }
     
@@ -466,9 +496,16 @@
       color: var(--primary);
     }
     
-    .ingredient-amount {
+    .ingredient-amount,
+    .history-details {
       color: var(--dark);
       font-size: 16px;
+    }
+    
+    .history-date {
+      font-weight: bold;
+      color: var(--primary);
+      margin-bottom: 5px;
     }
     
     .ingredient-actions {
@@ -518,12 +555,42 @@
     .save-btn:hover {
       background: linear-gradient(135deg, #1b5e20, #388e3c);
     }
+    
+    .tabs {
+      display: flex;
+      margin-bottom: 20px;
+      border-bottom: 1px solid #ddd;
+    }
+    
+    .tab-btn {
+      padding: 10px 20px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--dark);
+      border-bottom: 3px solid transparent;
+    }
+    
+    .tab-btn.active {
+      color: var(--primary);
+      border-bottom: 3px solid var(--primary);
+    }
+    
+    .tab-content {
+      display: none;
+    }
+    
+    .tab-content.active {
+      display: block;
+    }
   </style>
 </head>
 <body>
   <div class="container">
     <div class="header">
-      <img src="https://cdn.discordapp.com/attachments/1125122111090982922/1394635767283716106/image0.jpg" alt="بابا غنوج" class="logo">
+      <img src="https://cdn.discordapp.com/attachments/1125122111090982922/1394635767283716106/image0.jpg" alt="كافتيريا أبو حيدر" class="logo">
       <h1>حساب مقادير بابا غنوج</h1>
       <p class="description">أدخل كمية بابا غنوج المراد إعدادها (بالكيلو) وسنقوم بحساب جميع المقادير اللازمة لك</p>
     </div>
@@ -543,10 +610,15 @@
     </div>
     
     <div class="footer">
-      <p>© 2023 كافتيريا ابوحيدر | جميع الحقوق محفوظة</p>
-      <button class="manage-btn" onclick="openModal()">
-        <i class="fas fa-cogs"></i> إدارة المكونات
-      </button>
+      <p>© ١٩٦٨ كافتيريا أبو حيدر | جميع الحقوق محفوظة</p>
+      <div class="footer-buttons">
+        <button class="history-btn" onclick="openHistoryModal()">
+          <i class="fas fa-history"></i> سجل التغييرات
+        </button>
+        <button class="manage-btn" onclick="openModal()">
+          <i class="fas fa-cogs"></i> إدارة المكونات
+        </button>
+      </div>
     </div>
   </div>  
   
@@ -574,16 +646,45 @@
     </div>
   </div>
   
+  <!-- نافذة سجل التغييرات -->
+  <div id="historyModal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn" onclick="closeHistoryModal()">&times;</span>
+      <h2 class="modal-title">سجل التغييرات</h2>
+      
+      <div class="tabs">
+        <button class="tab-btn active" onclick="openTab(event, 'changesTab')">تعديلات المكونات</button>
+        <button class="tab-btn" onclick="openTab(event, 'calculationsTab')">عمليات الحساب</button>
+      </div>
+      
+      <div id="changesTab" class="tab-content active">
+        <div class="ingredients-list" id="changesHistory">
+          <!-- سيتم ملؤها بتسجيلات التغييرات -->
+        </div>
+      </div>
+      
+      <div id="calculationsTab" class="tab-content">
+        <div class="ingredients-list" id="calculationsHistory">
+          <!-- سيتم ملؤها بتسجيلات الحسابات -->
+        </div>
+      </div>
+    </div>
+  </div>
+  
   <script>
     // بيانات المكونات الافتراضية
     let المقادير = {
       "طحينة": 22.0,
-      "ليمون": 6.5, // تم تغيير اسم المكون من "عصير ليمون" إلى "ليمون"
+      "ليمون": 6.5,
       "ثوم": 0.750,
       "كمون": 0.800,
       "ملح": 1.400,
       "شطة": 0.120
     };
+    
+    // سجلات التاريخ
+    let سجل_التغييرات = [];
+    let سجل_الحسابات = [];
     
     // ثوابت أخرى
     const زبادي_علب_لكل_100كيلو = 30;
@@ -591,6 +692,7 @@
     // تحميل البيانات المحفوظة عند بدء التحميل
     document.addEventListener('DOMContentLoaded', function() {
       loadIngredients();
+      loadHistory();
       // حساب المقادير تلقائياً عند التحميل
       setTimeout(احسب, 500);
     });
@@ -671,6 +773,9 @@
       out.innerHTML = النتيجة;
       out.classList.add('show-result');
       
+      // تسجيل عملية الحساب
+      تسجيل_الحساب(كمية);
+      
       // تمرير للنتيجة
       out.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
@@ -684,6 +789,33 @@
     // إغلاق نافذة إدارة المكونات
     function closeModal() {
       document.getElementById('ingredientsModal').style.display = 'none';
+    }
+    
+    // فتح نافذة سجل التغييرات
+    function openHistoryModal() {
+      document.getElementById('historyModal').style.display = 'flex';
+      renderHistory();
+    }
+    
+    // إغلاق نافذة سجل التغييرات
+    function closeHistoryModal() {
+      document.getElementById('historyModal').style.display = 'none';
+    }
+    
+    // تبديل بين تبويبات السجل
+    function openTab(evt, tabName) {
+      const tabContents = document.getElementsByClassName("tab-content");
+      for (let i = 0; i < tabContents.length; i++) {
+        tabContents[i].classList.remove("active");
+      }
+      
+      const tabButtons = document.getElementsByClassName("tab-btn");
+      for (let i = 0; i < tabButtons.length; i++) {
+        tabButtons[i].classList.remove("active");
+      }
+      
+      document.getElementById(tabName).classList.add("active");
+      evt.currentTarget.classList.add("active");
     }
     
     // عرض قائمة المكونات في النافذة
@@ -712,6 +844,37 @@
       }
     }
     
+    // عرض سجل التغييرات
+    function renderHistory() {
+      const changesList = document.getElementById('changesHistory');
+      const calculationsList = document.getElementById('calculationsHistory');
+      
+      changesList.innerHTML = '';
+      calculationsList.innerHTML = '';
+      
+      // عرض تعديلات المكونات
+      سجل_التغييرات.forEach(record => {
+        const item = document.createElement('div');
+        item.className = 'history-item';
+        item.innerHTML = `
+          <div class="history-date">${record.date}</div>
+          <div class="history-details">${record.action}</div>
+        `;
+        changesList.appendChild(item);
+      });
+      
+      // عرض عمليات الحساب
+      سجل_الحسابات.forEach(record => {
+        const item = document.createElement('div');
+        item.className = 'history-item';
+        item.innerHTML = `
+          <div class="history-date">${record.date}</div>
+          <div class="history-details">${record.action}</div>
+        `;
+        calculationsList.appendChild(item);
+      });
+    }
+    
     // إضافة مكون جديد
     function addIngredient() {
       const nameInput = document.getElementById('ingredientName');
@@ -726,6 +889,9 @@
       }
       
       المقادير[name] = amount;
+      
+      // تسجيل التغيير
+      تسجيل_التغيير(`تم إضافة مكون جديد: ${name} - ${amount} كجم لكل 100 كيلو`);
       
       // مسح حقول الإدخال
       nameInput.value = '';
@@ -746,6 +912,9 @@
       const newAmount = parseFloat(prompt('الرجاء إدخال الكمية الجديدة لكل 100 كيلو:', المقادير[ingredientName]));
       if (isNaN(newAmount)) return;
       
+      // تسجيل التغيير قبل التعديل
+      تسجيل_التغيير(`تم تعديل المكون من "${ingredientName}" إلى "${newName}" والكمية من ${المقادير[ingredientName]} إلى ${newAmount}`);
+      
       // حذف القديم وإضافة الجديد
       delete المقادير[ingredientName];
       المقادير[newName] = newAmount;
@@ -756,16 +925,70 @@
     // حذف مكون
     function deleteIngredient(ingredientName) {
       if (confirm(`هل أنت متأكد من حذف "${ingredientName}"؟`)) {
+        // تسجيل التغيير قبل الحذف
+        تسجيل_التغيير(`تم حذف المكون: ${ingredientName} - ${المقادير[ingredientName]} كجم لكل 100 كيلو`);
+        
         delete المقادير[ingredientName];
         renderIngredientsList();
       }
     }
     
+    // تسجيل التغييرات في المكونات
+    function تسجيل_التغيير(إجراء) {
+      const الآن = new Date();
+      const تاريخ = الآن.toLocaleString('ar-EG', {
+        weekday: 'long',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit'
+      });
+      
+      سجل_التغييرات.unshift({
+        date: تاريخ,
+        action: إجراء
+      });
+      
+      // حفظ السجل
+      saveHistory();
+    }
+    
+    // تسجيل عمليات الحساب
+    function تسجيل_الحساب(كمية) {
+      const الآن = new Date();
+      const تاريخ = الآن.toLocaleString('ar-EG', {
+        weekday: 'long',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit'
+      });
+      
+      سجل_الحسابات.unshift({
+        date: تاريخ,
+        action: `تم حساب مقادير ${كمية} كيلو من البابا غنوج`
+      });
+      
+      // حفظ السجل
+      saveHistory();
+    }
+    
     // حفظ المكونات في localStorage
     function saveIngredients() {
       localStorage.setItem('baba_ghanoush_ingredients', JSON.stringify(المقادير));
+      تسجيل_التغيير('تم حفظ جميع التغييرات على المكونات');
       alert('تم حفظ التغييرات بنجاح!');
       closeModal();
+    }
+    
+    // حفظ السجل في localStorage
+    function saveHistory() {
+      localStorage.setItem('baba_ghanoush_changes_history', JSON.stringify(سجل_التغييرات));
+      localStorage.setItem('baba_ghanoush_calculations_history', JSON.stringify(سجل_الحسابات));
     }
     
     // تحميل المكونات من localStorage
@@ -773,6 +996,20 @@
       const savedIngredients = localStorage.getItem('baba_ghanoush_ingredients');
       if (savedIngredients) {
         المقادير = JSON.parse(savedIngredients);
+      }
+    }
+    
+    // تحميل السجل من localStorage
+    function loadHistory() {
+      const savedChanges = localStorage.getItem('baba_ghanoush_changes_history');
+      const savedCalculations = localStorage.getItem('baba_ghanoush_calculations_history');
+      
+      if (savedChanges) {
+        سجل_التغييرات = JSON.parse(savedChanges);
+      }
+      
+      if (savedCalculations) {
+        سجل_الحسابات = JSON.parse(savedCalculations);
       }
     }
     

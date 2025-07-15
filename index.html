@@ -1,67 +1,92 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<!DOCTYPE html><html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>حساب مقادير بابا غنوج</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>بابا غنوج</title>
+  <link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/2/29/Aubergine.jpg">
   <style>
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: #f2f2f2;
-      padding: 20px;
+      font-family: 'Segoe UI', Tahoma, sans-serif;
+      background: linear-gradient(to bottom, #f8f5f0, #fff);
       color: #333;
-      text-align: right;
+      padding: 20px;
+      margin: 0;
+    }
+    @media (prefers-color-scheme: dark) {
+      body {
+        background: #121212;
+        color: #eee;
+      }
+      .container, .result {
+        background: #1e1e1e;
+        box-shadow: 0 0 5px #0005;
+      }
+    }
+    .container {
+      background: #ffffff;
+      border-radius: 15px;
+      padding: 20px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      max-width: 500px;
+      margin: auto;
     }
     h1 {
-      color: #444;
       font-size: 24px;
+      color: #4a3c29;
+      text-align: center;
+    }
+    .logo {
+      display: block;
+      margin: 0 auto 10px;
+      width: 60px;
+      border-radius: 50%;
     }
     input[type="number"] {
-      padding: 10px;
-      font-size: 16px;
       width: 100%;
-      box-sizing: border-box;
+      padding: 12px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
       margin-bottom: 10px;
     }
     button {
       background-color: #4CAF50;
       color: white;
-      padding: 12px 20px;
+      padding: 12px;
       border: none;
-      cursor: pointer;
       width: 100%;
       font-size: 16px;
-      margin-bottom: 20px;
+      border-radius: 8px;
+      cursor: pointer;
     }
     .result {
-      background: white;
+      background: #f9f9f9;
+      border-radius: 12px;
       padding: 15px;
-      border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-      margin-bottom: 20px;
+      margin-top: 20px;
     }
     .result h3 {
       margin-top: 0;
       color: #2c3e50;
     }
     .item {
-      margin: 5px 0;
+      margin: 6px 0;
     }
   </style>
 </head>
 <body>
-  <h1>💡 حساب مقادير بابا غنوج</h1>
-  <label>أدخل كمية بابا غنوج (بالكيلو):</label>
-  <input type="number" id="quantity" min="1" step="0.1" placeholder="مثلاً 50" />
-  <button onclick="احسب()">احسب المقادير</button>
-
-  <div class="result" id="output" style="display:none;"></div>
-
-  <script>
+  <div class="container">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/2/29/Aubergine.jpg" alt="بابا غنوج" class="logo">
+    <h1>حساب مقادير بابا غنوج</h1>
+    <label>أدخل كمية بابا غنوج (بالكيلو):</label>
+    <input type="number" id="quantity" min="1" step="0.1" placeholder="مثلاً 50">
+    <button onclick="احسب()">احسب المقادير</button>
+    <div class="result" id="output" style="display:none;"></div>
+  </div>  <script>
     function احسب() {
       const كمية = parseFloat(document.getElementById('quantity').value);
       if (isNaN(كمية) || كمية <= 0) {
-        alert("❌ من فضلك أدخل كمية صحيحة أكبر من صفر");
+        alert("❌ أدخل كمية صحيحة أكبر من صفر");
         return;
       }
 
@@ -80,30 +105,21 @@
 
       let النتيجة = `<h3>🔢 المقادير المطلوبة لـ ${كمية} كيلو بابا غنوج:</h3>`;
       for (let مكون in المقادير) {
-        let كمية_المكون = المقادير[مكون] * نسبة;
-        if (كمية_المكون < 1) {
-          النتيجة += `<div class="item">${مكون}: ${(كمية_المكون * 1000).toFixed(2)} جرام</div>`;
-        } else {
-          النتيجة += `<div class="item">${مكون}: ${كمية_المكون.toFixed(2)} كيلو</div>`;
-        }
+        let قيمة = المقادير[مكون] * نسبة;
+        النتيجة += `<div class="item">${مكون}: ${قيمة < 1 ? (قيمة * 1000).toFixed(2) + ' جرام' : قيمة.toFixed(2) + ' كيلو'}</div>`;
       }
       النتيجة += `<div class="item">زبادي: ${زبادي_علب} علبة</div>`;
 
-      // تقسيم على 3
       النتيجة += `<h3>🥣 المقادير لكل حلة (ثلث الكمية):</h3>`;
       for (let مكون in المقادير) {
-        let كمية_المكون = (المقادير[مكون] * نسبة) / 3;
-        if (كمية_المكون < 1) {
-          النتيجة += `<div class="item">${مكون}: ${(كمية_المكون * 1000).toFixed(2)} جرام</div>`;
-        } else {
-          النتيجة += `<div class="item">${مكون}: ${كمية_المكون.toFixed(2)} كيلو</div>`;
-        }
+        let قيمة = (المقادير[مكون] * نسبة) / 3;
+        النتيجة += `<div class="item">${مكون}: ${قيمة < 1 ? (قيمة * 1000).toFixed(2) + ' جرام' : قيمة.toFixed(2) + ' كيلو'}</div>`;
       }
       النتيجة += `<div class="item">زبادي: ${(زبادي_علب / 3).toFixed(2)} علبة</div>`;
 
-      document.getElementById('output').style.display = 'block';
-      document.getElementById('output').innerHTML = النتيجة;
+      const out = document.getElementById('output');
+      out.innerHTML = النتيجة;
+      out.style.display = 'block';
     }
-  </script>
-</body>
+  </script></body>
 </html>

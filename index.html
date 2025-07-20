@@ -3,27 +3,27 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="apple-touch-icon" href="https://i.ibb.co/cHrQjBG/logo.jpg">
   <title>حاسبة مقادير بابا غنوج | كافتيريا أبو حيدر</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&family=Tajawal:wght@300;400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link rel="icon" href="https://cdn.discordapp.com/attachments/1125122111090982922/1394635767283716106/image0.jpg">
   <style>
-    /* التصميم العام */
+    /* متغيرات الألوان */
     :root {
-      --primary: #8B4513;
-      --secondary: #CD853F;
-      --accent: #FFA500;
-      --light: #FFF8DC;
-      --dark: #2c1600;
-      --success: #4CAF50;
-      --card-bg: rgba(255, 255, 255, 0.95);
-      --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      --primary: #8D6E63;
+      --primary-dark: #5D4037;
+      --primary-light: #D7CCC8;
+      --secondary: #FF8A65;
+      --accent: #FFA726;
+      --light: #FFF8F0;
+      --dark: #3E2723;
+      --success: #66BB6A;
+      --card-bg: rgba(255, 253, 250, 0.95);
+      --shadow: 0 5px 15px rgba(141, 110, 99, 0.1);
       --input-color: #5d4037;
+      --text: #4E342E;
+      --text-light: #8D6E63;
     }
     
+    /* التصميم العام */
     * {
       margin: 0;
       padding: 0;
@@ -32,44 +32,48 @@
     }
     
     body {
-      font-family: 'Tajawal', 'Cairo', sans-serif;
-      background: linear-gradient(135deg, #f8f5f0, #fff6e9);
-      color: #333;
-      padding: 20px;
+      font-family: 'Tajawal', sans-serif;
+      background: linear-gradient(135deg, #faf3e6, #fcefe1);
+      color: var(--text);
+      padding: 15px;
       min-height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
+      line-height: 1.6;
     }
     
     /* وضع الليل */
     @media (prefers-color-scheme: dark) {
       :root {
-        --primary: #d2a679;
-        --secondary: #a67c52;
-        --light: #1a120b;
-        --dark: #f8e9d4;
-        --card-bg: rgba(30, 30, 30, 0.95);
-        --input-color: #ffd8a6;
+        --primary: #BCAAA4;
+        --primary-dark: #8D6E63;
+        --primary-light: #4E342E;
+        --secondary: #FFAB91;
+        --accent: #FFB74D;
+        --light: #1e120d;
+        --dark: #f5e9e0;
+        --card-bg: rgba(30, 23, 20, 0.95);
+        --text: #EFEBE9;
+        --text-light: #BCAAA4;
       }
       
       body {
-        background: linear-gradient(135deg, #121212, #1a1a1a);
-        color: #eee;
+        background: linear-gradient(135deg, #1a120b, #241913);
       }
     }
     
     .container {
       background: var(--card-bg);
       border-radius: 20px;
-      padding: 30px;
+      padding: 20px;
       box-shadow: var(--shadow);
-      max-width: 650px;
       width: 100%;
-      margin: 20px auto;
+      max-width: 500px;
+      margin: 15px auto;
       position: relative;
       overflow: hidden;
-      border: 1px solid rgba(139, 69, 19, 0.1);
+      border: 1px solid var(--primary-light);
     }
     
     .container::before {
@@ -78,36 +82,58 @@
       top: 0;
       right: 0;
       width: 100%;
-      height: 8px;
-      background: linear-gradient(90deg, var(--primary), var(--accent));
-      border-radius: 2px;
+      height: 6px;
+      background: linear-gradient(90deg, var(--accent), var(--secondary));
+      border-radius: 0 0 2px 2px;
     }
     
+    /* تصميم الهيدر */
     .header {
       text-align: center;
-      margin-bottom: 25px;
+      margin-bottom: 20px;
       position: relative;
+      padding-bottom: 15px;
+    }
+    
+    .logo-container {
+      position: relative;
+      width: 100px;
+      height: 100px;
+      margin: 0 auto 15px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
     
     .logo {
-      display: block;
-      margin: 0 auto 15px;
-      width: 120px;
-      height: 120px;
+      width: 90px;
+      height: 90px;
       border-radius: 50%;
       object-fit: cover;
-      border: 4px solid var(--light);
-      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      border: 3px solid var(--light);
+      box-shadow: 0 5px 15px rgba(141, 110, 99, 0.15);
       background-color: white;
-      padding: 5px;
+      padding: 4px;
+      z-index: 2;
+    }
+    
+    .logo-bg {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, var(--secondary), var(--accent));
+      border-radius: 50%;
+      filter: blur(8px);
+      opacity: 0.3;
+      z-index: 1;
     }
     
     h1 {
-      font-size: 32px;
-      color: var(--primary);
+      font-size: 26px;
+      color: var(--primary-dark);
       text-align: center;
       margin: 10px 0;
-      font-weight: 700;
+      font-weight: 800;
       position: relative;
       display: inline-block;
     }
@@ -118,160 +144,198 @@
       bottom: -10px;
       right: 50%;
       transform: translateX(50%);
-      width: 120px;
-      height: 4px;
-      background: linear-gradient(90deg, var(--primary), var(--accent));
+      width: 100px;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent), var(--secondary));
       border-radius: 2px;
     }
     
     .description {
       text-align: center;
-      color: var(--dark);
-      font-size: 18px;
-      margin: 20px 0;
+      color: var(--text-light);
+      font-size: 16px;
+      margin: 20px 0 15px;
       line-height: 1.6;
-      padding: 0 15px;
+      padding: 0 10px;
     }
     
-    /* حقل الإدخال */
+    /* حقول الإدخال */
     .input-group {
-      margin: 25px 0;
+      margin: 20px 0;
       position: relative;
     }
     
     .input-group label {
       display: block;
       margin-bottom: 10px;
-      font-weight: 600;
-      color: var(--primary);
-      font-size: 18px;
+      font-weight: 700;
+      color: var(--primary-dark);
+      font-size: 16px;
+      padding-right: 8px;
     }
     
     .input-group input {
       width: 100%;
-      padding: 16px 20px;
-      font-size: 18px;
+      padding: 15px 20px;
+      font-size: 17px;
       font-family: 'Tajawal', sans-serif;
-      border: 2px solid #ddd;
+      border: 2px solid var(--primary-light);
       border-radius: 12px;
       background: rgba(255, 255, 255, 0.8);
       color: var(--input-color);
       font-weight: bold;
       outline: none;
+      box-shadow: 0 4px 10px rgba(141, 110, 99, 0.1);
     }
     
     .input-group input:focus {
-      border-color: var(--primary);
-      box-shadow: 0 0 0 3px rgba(139, 69, 19, 0.2);
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(255, 167, 38, 0.25);
     }
     
     .input-group .unit {
       position: absolute;
-      left: 20px;
-      top: 50px;
-      background: var(--primary);
+      left: 15px;
+      top: 48px;
+      background: var(--secondary);
       color: white;
-      padding: 5px 15px;
+      padding: 6px 15px;
       border-radius: 8px;
-      font-weight: 600;
+      font-weight: 700;
+      font-size: 14px;
+      box-shadow: 0 3px 6px rgba(255, 138, 101, 0.2);
     }
     
     /* زر الحساب */
     .btn-calculate {
-      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      background: linear-gradient(135deg, var(--secondary), var(--accent));
       color: white;
       padding: 16px;
       border: none;
       width: 100%;
-      font-size: 20px;
+      font-size: 18px;
       font-family: 'Tajawal', sans-serif;
-      font-weight: 700;
+      font-weight: 800;
       border-radius: 12px;
       cursor: pointer;
-      margin: 10px 0 20px;
-      box-shadow: 0 5px 15px rgba(139, 69, 19, 0.3);
+      margin: 15px 0 20px;
+      box-shadow: 0 6px 15px rgba(255, 138, 101, 0.3);
       display: flex;
       justify-content: center;
       align-items: center;
       gap: 10px;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .btn-calculate::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transition: 0.5s;
     }
     
     .btn-calculate:hover {
       transform: translateY(-3px);
-      box-shadow: 0 8px 20px rgba(139, 69, 19, 0.4);
+      box-shadow: 0 8px 18px rgba(255, 138, 101, 0.4);
+    }
+    
+    .btn-calculate:hover::before {
+      left: 100%;
     }
     
     .btn-calculate:active {
       transform: translateY(1px);
+      box-shadow: 0 3px 8px rgba(255, 138, 101, 0.3);
     }
     
     /* نتيجة الحساب */
     .result {
-      background: rgba(255, 248, 220, 0.6);
-      border-radius: 15px;
-      padding: 25px;
+      background: rgba(255, 248, 240, 0.7);
+      border-radius: 16px;
+      padding: 20px;
       margin-top: 20px;
       display: none;
-      border: 1px solid rgba(139, 69, 19, 0.1);
+      border: 1px solid var(--primary-light);
+      box-shadow: 0 5px 15px rgba(141, 110, 99, 0.1);
     }
     
     .dark-mode .result {
-      background: rgba(30, 30, 30, 0.7);
+      background: rgba(40, 30, 25, 0.7);
     }
     
     .result h3 {
       margin-top: 0;
-      color: var(--primary);
-      font-size: 24px;
+      color: var(--primary-dark);
+      font-size: 20px;
       margin-bottom: 20px;
       display: flex;
       align-items: center;
       gap: 10px;
+      padding-bottom: 10px;
+      border-bottom: 2px dashed var(--primary-light);
     }
     
     .item {
       margin: 12px 0;
-      padding: 12px 15px;
-      background: rgba(255, 255, 255, 0.7);
-      border-radius: 10px;
+      padding: 14px;
+      background: rgba(255, 255, 255, 0.85);
+      border-radius: 12px;
       display: flex;
       justify-content: space-between;
-      font-size: 18px;
-      font-weight: 500;
-      color: var(--dark);
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--text);
       border-left: 4px solid var(--accent);
+      box-shadow: 0 4px 10px rgba(141, 110, 99, 0.1);
     }
     
     .dark-mode .item {
-      background: rgba(50, 50, 50, 0.5);
+      background: rgba(50, 40, 35, 0.5);
     }
     
     .item .ingredient {
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 10px;
     }
     
     .item .value {
-      font-weight: 700;
-      color: var(--primary);
+      font-weight: 800;
+      color: var(--secondary);
+      font-size: 15px;
+      text-align: left;
+      min-width: 90px;
     }
     
     .ingredient-icon {
       color: var(--accent);
-      font-size: 20px;
+      font-size: 18px;
+      width: 26px;
+      text-align: center;
+      background: rgba(255, 167, 38, 0.1);
+      padding: 6px;
+      border-radius: 8px;
     }
     
     .footer {
       text-align: center;
-      margin-top: 30px;
-      color: var(--dark);
-      font-size: 16px;
+      margin-top: 25px;
+      color: var(--text-light);
+      font-size: 14px;
       padding-top: 15px;
-      border-top: 1px solid rgba(139, 69, 19, 0.1);
+      border-top: 1px solid var(--primary-light);
       display: flex;
-      justify-content: space-between;
-      align-items: center;
+      flex-direction: column;
+      gap: 15px;
+    }
+    
+    .footer p {
+      margin: 0;
     }
     
     /* تأثيرات للنتيجة */
@@ -285,97 +349,90 @@
       animation: fadeIn 0.5s ease-out;
     }
     
-    /* تصميم متجاوب */
-    @media (max-width: 600px) {
-      body {
-        padding: 15px;
-      }
-      
-      .container {
-        padding: 25px 20px;
-      }
-      
-      h1 {
-        font-size: 26px;
-      }
-      
-      .logo {
-        width: 100px;
-        height: 100px;
-      }
-      
-      .description {
-        font-size: 16px;
-      }
-      
-      .input-group input {
-        padding: 14px 18px;
-        font-size: 16px;
-      }
-      
-      .btn-calculate {
-        padding: 14px;
-        font-size: 18px;
-      }
-      
-      .result {
-        padding: 20px;
-      }
-      
-      .result h3 {
-        font-size: 20px;
-      }
-      
-      .item {
-        font-size: 16px;
-        padding: 10px 12px;
-      }
-      
-      .footer {
-        flex-direction: column;
-        gap: 10px;
-      }
-    }
-    
-    /* واجهة إدارة المكونات */
-    .manage-btn {
-      background: linear-gradient(135deg, #6a4c93, #8e44ad);
-      color: white;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 8px;
-      font-size: 16px;
-      cursor: pointer;
+    /* تصميم مجموعة الحلل */
+    .portion-group {
       display: flex;
       align-items: center;
+      gap: 15px;
+      margin-bottom: 20px;
+      padding: 15px;
+      background: rgba(255, 248, 240, 0.6);
+      border-radius: 12px;
+      border: 1px solid var(--primary-light);
+      box-shadow: 0 4px 10px rgba(141, 110, 99, 0.1);
+    }
+    
+    .dark-mode .portion-group {
+      background: rgba(40, 30, 25, 0.5);
+    }
+    
+    .portion-label {
+      font-weight: 700;
+      color: var(--primary-dark);
+      font-size: 16px;
+      flex: 1;
+    }
+    
+    .portion-input {
+      width: 80px;
+      padding: 12px;
+      border: 2px solid var(--primary-light);
+      border-radius: 10px;
+      font-size: 17px;
+      font-weight: bold;
+      text-align: center;
+      background: rgba(255, 255, 255, 0.8);
+      color: var(--input-color);
+      box-shadow: 0 4px 10px rgba(141, 110, 99, 0.1);
+    }
+    
+    .portion-input:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(255, 167, 38, 0.25);
+    }
+    
+    /* تصميم الأزرار الجانبية */
+    .footer-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    
+    .manage-btn, .history-btn {
+      padding: 12px 20px;
+      border-radius: 10px;
+      font-size: 15px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       gap: 8px;
-      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    
+    .manage-btn {
+      background: linear-gradient(135deg, #7E57C2, #5E35B1);
+      color: white;
     }
     
     .history-btn {
-      background: linear-gradient(135deg, #3a7bd5, #00d2ff);
+      background: linear-gradient(135deg, #42A5F5, #1976D2);
       color: white;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 8px;
-      font-size: 16px;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-weight: 600;
     }
     
-    .manage-btn:hover {
-      background: linear-gradient(135deg, #5a3c83, #7d34a8);
+    .manage-btn:hover, .history-btn:hover {
       transform: translateY(-2px);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
     }
     
-    .history-btn:hover {
-      background: linear-gradient(135deg, #2a6bc5, #00c2ef);
-      transform: translateY(-2px);
+    .manage-btn:active, .history-btn:active {
+      transform: translateY(1px);
     }
     
+    /* تصميم النماذج المنبثقة للجوال */
     .modal {
       display: none;
       position: fixed;
@@ -384,227 +441,245 @@
       top: 0;
       width: 100%;
       height: 100%;
-      background-color: rgba(0, 0, 0, 0.7);
+      background-color: rgba(0, 0, 0, 0.8);
       overflow: auto;
       justify-content: center;
-      align-items: center;
+      align-items: flex-start;
+      padding: 20px 10px;
     }
     
     .modal-content {
       background: var(--card-bg);
-      margin: 5% auto;
-      padding: 30px;
+      margin: 10px auto;
+      padding: 25px;
       border-radius: 20px;
-      width: 90%;
-      max-width: 700px;
-      max-height: 80vh;
+      width: 95%;
+      max-width: 100%;
+      max-height: 90vh;
       overflow-y: auto;
       position: relative;
-      box-shadow: 0 10px 50px rgba(0, 0, 0, 0.3);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
       border: 2px solid var(--accent);
     }
     
     .close-btn {
       position: absolute;
-      top: 20px;
-      left: 20px;
-      font-size: 30px;
+      top: 15px;
+      left: 15px;
+      font-size: 28px;
       color: var(--primary);
       cursor: pointer;
+      width: 35px;
+      height: 35px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 50%;
+      transition: all 0.3s;
     }
     
     .close-btn:hover {
       color: var(--accent);
+      background: rgba(255, 167, 38, 0.1);
     }
     
     .modal-title {
       text-align: center;
-      margin: 15px 0 30px;
-      color: var(--primary);
-      font-size: 28px;
+      margin: 15px 0 25px;
+      color: var(--primary-dark);
+      font-size: 22px;
+      position: relative;
     }
     
+    .modal-title::after {
+      content: "";
+      position: absolute;
+      bottom: -12px;
+      right: 50%;
+      transform: translateX(50%);
+      width: 80px;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent), var(--secondary));
+      border-radius: 2px;
+    }
+    
+    /* تصميم القوائم للجوال */
     .ingredient-form {
       display: flex;
-      flex-wrap: wrap;
-      gap: 15px;
-      margin-bottom: 30px;
-      padding: 20px;
-      background: rgba(255, 248, 220, 0.3);
-      border-radius: 15px;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 20px;
+      padding: 15px;
+      background: rgba(255, 248, 240, 0.5);
+      border-radius: 12px;
     }
     
     .ingredient-form input {
-      flex: 1;
-      min-width: 200px;
+      width: 100%;
       padding: 12px 15px;
-      border: 1px solid #ddd;
+      border: 1px solid var(--primary-light);
       border-radius: 8px;
       font-size: 16px;
       font-family: 'Tajawal', sans-serif;
+      background: rgba(255, 255, 255, 0.8);
     }
     
     .add-btn {
       background: var(--success);
       color: white;
       border: none;
-      padding: 12px 25px;
+      padding: 12px;
       border-radius: 8px;
       cursor: pointer;
       font-weight: bold;
       font-size: 16px;
-    }
-    
-    .add-btn:hover {
-      background: #3d8b40;
-    }
-    
-    .ingredients-list {
-      margin-top: 20px;
-    }
-    
-    .ingredient-item {
       display: flex;
-      justify-content: space-between;
+      justify-content: center;
       align-items: center;
-      padding: 15px;
-      margin-bottom: 15px;
-      background: rgba(255, 255, 255, 0.5);
-      border-radius: 12px;
-      border-left: 4px solid var(--secondary);
+      gap: 8px;
     }
     
-    .history-item {
+    .ingredient-item, .history-item {
       padding: 15px;
       margin-bottom: 15px;
-      background: rgba(255, 255, 255, 0.5);
+      background: rgba(255, 255, 255, 0.6);
       border-radius: 12px;
       border-left: 4px solid var(--secondary);
+      box-shadow: 0 4px 10px rgba(141, 110, 99, 0.1);
     }
     
     .dark-mode .ingredient-item,
     .dark-mode .history-item {
-      background: rgba(50, 50, 50, 0.3);
-    }
-    
-    .ingredient-info {
-      flex: 1;
-    }
-    
-    .ingredient-name {
-      font-weight: bold;
-      font-size: 18px;
-      color: var(--primary);
-    }
-    
-    .ingredient-amount,
-    .history-details {
-      color: var(--dark);
-      font-size: 16px;
+      background: rgba(50, 40, 35, 0.4);
     }
     
     .history-date {
       font-weight: bold;
-      color: var(--primary);
-      margin-bottom: 5px;
+      color: var(--accent);
+      margin-bottom: 6px;
+      font-size: 16px;
     }
     
-    .ingredient-actions {
-      display: flex;
-      gap: 10px;
-    }
-    
-    .edit-btn, .delete-btn {
-      padding: 8px 15px;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-      font-size: 14px;
-      display: flex;
-      align-items: center;
-      gap: 5px;
-    }
-    
-    .edit-btn {
-      background: #ffc107;
-      color: #333;
-    }
-    
-    .delete-btn {
-      background: #f44336;
-      color: white;
-    }
-    
-    .edit-btn:hover, .delete-btn:hover {
-      opacity: 0.9;
+    .history-details {
+      font-size: 15px;
     }
     
     .save-btn {
       background: linear-gradient(135deg, #2e7d32, #4CAF50);
       color: white;
-      padding: 12px 25px;
+      padding: 12px;
       border: none;
       border-radius: 8px;
       cursor: pointer;
       font-weight: bold;
       font-size: 16px;
-      margin-top: 20px;
+      margin-top: 15px;
       display: block;
-      margin-left: auto;
+      width: 100%;
     }
     
-    .save-btn:hover {
-      background: linear-gradient(135deg, #1b5e20, #388e3c);
+    /* تحسينات للشاشات الصغيرة جداً */
+    @media (max-width: 360px) {
+      .container {
+        padding: 15px;
+      }
+      
+      h1 {
+        font-size: 24px;
+      }
+      
+      .description {
+        font-size: 15px;
+      }
+      
+      .input-group input {
+        padding: 13px 18px;
+        font-size: 16px;
+      }
+      
+      .btn-calculate {
+        font-size: 17px;
+        padding: 14px;
+      }
+      
+      .portion-input {
+        width: 70px;
+        padding: 10px;
+        font-size: 16px;
+      }
+      
+      .result {
+        padding: 15px;
+      }
+      
+      .item {
+        font-size: 15px;
+        padding: 12px;
+      }
+      
+      .ingredient-icon {
+        font-size: 16px;
+        width: 24px;
+      }
     }
     
-    .tabs {
-      display: flex;
-      margin-bottom: 20px;
-      border-bottom: 1px solid #ddd;
-    }
-    
-    .tab-btn {
-      padding: 10px 20px;
-      background: none;
-      border: none;
-      cursor: pointer;
-      font-size: 16px;
-      font-weight: 600;
-      color: var(--dark);
-      border-bottom: 3px solid transparent;
-    }
-    
-    .tab-btn.active {
-      color: var(--primary);
-      border-bottom: 3px solid var(--primary);
-    }
-    
-    .tab-content {
-      display: none;
-    }
-    
-    .tab-content.active {
-      display: block;
+    /* تحسينات للشاشات الكبيرة */
+    @media (min-width: 768px) {
+      .container {
+        max-width: 600px;
+        padding: 30px;
+      }
+      
+      h1 {
+        font-size: 32px;
+      }
+      
+      .logo-container {
+        width: 130px;
+        height: 130px;
+      }
+      
+      .logo {
+        width: 110px;
+        height: 110px;
+      }
+      
+      .description {
+        font-size: 18px;
+      }
+      
+      .footer-buttons {
+        flex-direction: row;
+        justify-content: center;
+      }
     }
   </style>
 </head>
 <body>
   <div class="container">
     <div class="header">
-      <img src="https://i.ibb.co/cHrQjBG/logo.jpg" alt="كافتيريا أبو حيدر" class="logo">
+      <div class="logo-container">
+        <div class="logo-bg"></div>
+        <img src="https://i.ibb.co/cHrQjBG/logo.jpg" alt="كافتيريا أبو حيدر" class="logo">
+      </div>
 
-      <h1>حساب مقادير بابا غنوج</h1>
-      <p class="description">أدخل كمية بابا غنوج المراد إعدادها (بالكيلو) وسنقوم بحساب جميع المقادير اللازمة لك</p>
+      <h1>حاسبة مقادير بابا غنوج</h1>
+      <p class="description">أدخل الكمية المطلوبة وعدد الحلل، وسنقوم بحساب جميع المقادير اللازمة لك بدقة متناهية</p>
     </div>
     
     <div class="input-group">
-      <label for="quantity">الكمية المطلوبة (كيلوجرام)</label>
-      <input type="number" id="quantity" min="1" step="0.1" placeholder="مثال: 50" value="50">
+      <label for="quantity"><i class="fas fa-weight-hanging"></i> الكمية المطلوبة (كيلوجرام)</label>
+      <input type="number" id="quantity" min="1" step="0.1" placeholder="مثال: 50">
       <div class="unit">كجم</div>
     </div>
     
+    <div class="portion-group">
+      <span class="portion-label"><i class="fas fa-utensils"></i> عدد الحلل:</span>
+      <input type="number" id="portions" min="1" step="1" value="3" class="portion-input">
+    </div>
+    
     <button class="btn-calculate" onclick="احسب()">
-      <i class="fas fa-calculator"></i> احسب المقادير
+      <i class="fas fa-calculator"></i> احسب المقادير الآن
     </button>
     
     <div class="result" id="output">
@@ -612,7 +687,7 @@
     </div>
     
     <div class="footer">
-      <p>©  كافتيريا أبو حيدر  تأسست ١٩٦٠| جميع الحقوق محفوظة</p>
+      <p>© كافتيريا أبو حيدر | تأسست ١٩٦٠ | جميع الحقوق محفوظة</p>
       <div class="footer-buttons">
         <button class="history-btn" onclick="openHistoryModal()">
           <i class="fas fa-history"></i> سجل التغييرات
@@ -684,6 +759,17 @@
       "شطة": 0.120
     };
     
+    // رموز المكونات
+    const رموز_المكونات = {
+      "طحينة": "fas fa-jar",
+      "ليمون": "fas fa-lemon",
+      "ثوم": "fas fa-garlic",
+      "كمون": "fas fa-mortar-pestle",
+      "ملح": "fas fa-cubes",
+      "شطة": "fas fa-pepper-hot",
+      "زبادي": "fas fa-cheese"
+    };
+    
     // سجلات التاريخ
     let سجل_التغييرات = [];
     let سجل_الحسابات = [];
@@ -695,15 +781,20 @@
     document.addEventListener('DOMContentLoaded', function() {
       loadIngredients();
       loadHistory();
-      // حساب المقادير تلقائياً عند التحميل
-      setTimeout(احسب, 500);
     });
     
     // دالة الحساب
     function احسب() {
       const كمية = parseFloat(document.getElementById('quantity').value);
+      const عدد_الحلل = parseInt(document.getElementById('portions').value);
+      
       if (isNaN(كمية) || كمية <= 0) {
         alert("❌ الرجاء إدخال كمية صحيحة أكبر من الصفر");
+        return;
+      }
+      
+      if (isNaN(عدد_الحلل) || عدد_الحلل <= 0) {
+        alert("❌ الرجاء إدخال عدد حلل صحيح أكبر من الصفر");
         return;
       }
 
@@ -715,10 +806,11 @@
       // حساب كل مكون
       for (let مكون in المقادير) {
         let قيمة = المقادير[مكون] * نسبة;
+        const رمز = رموز_المكونات[مكون] || "fas fa-circle";
         النتيجة += `
           <div class="item">
             <div class="ingredient">
-              <i class="fas fa-seedling ingredient-icon"></i>
+              <i class="${رمز} ingredient-icon"></i>
               ${مكون}
             </div>
             <div class="value">
@@ -732,7 +824,7 @@
       النتيجة += `
         <div class="item">
           <div class="ingredient">
-            <i class="fas fa-seedling ingredient-icon"></i>
+            <i class="${رموز_المكونات["زبادي"]} ingredient-icon"></i>
             زبادي
           </div>
           <div class="value">
@@ -741,14 +833,15 @@
         </div>
       `;
 
-      // حساب لكل حلة (ثلث الكمية)
-      النتيجة += `<h3><i class="fas fa-utensils"></i> المقادير لكل حلة (ثلث الكمية):</h3>`;
+      // حساب لكل حلة (كمية مقسمة على عدد الحلل)
+      النتيجة += `<h3><i class="fas fa-utensils"></i> المقادير لكل حلة (${عدد_الحلل} حلل):</h3>`;
       for (let مكون in المقادير) {
-        let قيمة = (المقادير[مكون] * نسبة) / 3;
+        let قيمة = (المقادير[مكون] * نسبة) / عدد_الحلل;
+        const رمز = رموز_المكونات[مكون] || "fas fa-circle";
         النتيجة += `
           <div class="item">
             <div class="ingredient">
-              <i class="fas fa-seedling ingredient-icon"></i>
+              <i class="${رمز} ingredient-icon"></i>
               ${مكون}
             </div>
             <div class="value">
@@ -762,11 +855,11 @@
       النتيجة += `
         <div class="item">
           <div class="ingredient">
-            <i class="fas fa-seedling ingredient-icon"></i>
+            <i class="${رموز_المكونات["زبادي"]} ingredient-icon"></i>
             زبادي
           </div>
           <div class="value">
-            ${(زبادي_علب / 3).toFixed(2)} علبة
+            ${(زبادي_علب / عدد_الحلل).toFixed(2)} علبة
           </div>
         </div>
       `;
@@ -776,7 +869,7 @@
       out.classList.add('show-result');
       
       // تسجيل عملية الحساب
-      تسجيل_الحساب(كمية);
+      تسجيل_الحساب(كمية, عدد_الحلل);
       
       // تمرير للنتيجة
       out.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -958,7 +1051,7 @@
     }
     
     // تسجيل عمليات الحساب
-    function تسجيل_الحساب(كمية) {
+    function تسجيل_الحساب(كمية, عدد_الحلل) {
       const الآن = new Date();
       const تاريخ = الآن.toLocaleString('ar-EG', {
         weekday: 'long',
@@ -972,7 +1065,7 @@
       
       سجل_الحسابات.unshift({
         date: تاريخ,
-        action: `تم حساب مقادير ${كمية} كيلو من البابا غنوج`
+        action: `تم حساب مقادير ${كمية} كيلو من البابا غنوج مقسمة على ${عدد_الحلل} حلل`
       });
       
       // حفظ السجل

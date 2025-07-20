@@ -3,70 +3,38 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="apple-touch-icon" href="https://i.ibb.co/cHrQjBG/logo.jpg">
   <title>حاسبة مقادير بابا غنوج | كافتيريا أبو حيدر</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&family=Tajawal:wght@300;400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link rel="icon" href="https://cdn.discordapp.com/attachments/1125122111090982922/1394635767283716106/image0.jpg">
+  <link rel="apple-touch-icon" href="https://i.ibb.co/cHrQjBG/logo.jpg">
+  <link rel="icon" href="https://i.ibb.co/cHrQjBG/logo.jpg">
   <style>
-    /* التصميم العام */
-    :root {
-      --primary: #8B4513;
-      --secondary: #CD853F;
-      --accent: #FFA500;
-      --light: #FFF8DC;
-      --dark: #2c1600;
-      --success: #4CAF50;
-      --card-bg: rgba(255, 255, 255, 0.95);
-      --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-      --input-color: #5d4037;
-    }
-    
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
       transition: all 0.3s ease;
+      font-family: 'Tajawal', sans-serif;
     }
     
     body {
-      font-family: 'Tajawal', 'Cairo', sans-serif;
       background: linear-gradient(135deg, #f8f5f0, #fff6e9);
-      color: #333;
-      padding: 20px;
+      color: #4E342E;
+      padding: 15px;
       min-height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
-    }
-    
-    /* وضع الليل */
-    @media (prefers-color-scheme: dark) {
-      :root {
-        --primary: #d2a679;
-        --secondary: #a67c52;
-        --light: #1a120b;
-        --dark: #f8e9d4;
-        --card-bg: rgba(30, 30, 30, 0.95);
-        --input-color: #ffd8a6;
-      }
-      
-      body {
-        background: linear-gradient(135deg, #121212, #1a1a1a);
-        color: #eee;
-      }
+      line-height: 1.6;
     }
     
     .container {
-      background: var(--card-bg);
+      background: rgba(255, 253, 250, 0.95);
       border-radius: 20px;
-      padding: 30px;
-      box-shadow: var(--shadow);
-      max-width: 650px;
+      padding: 25px;
+      box-shadow: 0 10px 30px rgba(141, 110, 99, 0.15);
       width: 100%;
-      margin: 20px auto;
+      max-width: 500px;
+      margin: 15px auto;
       position: relative;
       overflow: hidden;
       border: 1px solid rgba(139, 69, 19, 0.1);
@@ -78,36 +46,57 @@
       top: 0;
       right: 0;
       width: 100%;
-      height: 8px;
-      background: linear-gradient(90deg, var(--primary), var(--accent));
-      border-radius: 2px;
+      height: 6px;
+      background: linear-gradient(90deg, #FF8A65, #FFA726);
+      border-radius: 0 0 2px 2px;
     }
     
     .header {
       text-align: center;
-      margin-bottom: 25px;
+      margin-bottom: 20px;
       position: relative;
+      padding-bottom: 15px;
+    }
+    
+    .logo-container {
+      position: relative;
+      width: 110px;
+      height: 110px;
+      margin: 0 auto 15px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
     
     .logo {
-      display: block;
-      margin: 0 auto 15px;
-      width: 120px;
-      height: 120px;
+      width: 100px;
+      height: 100px;
       border-radius: 50%;
       object-fit: cover;
-      border: 4px solid var(--light);
-      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      border: 3px solid #fff;
+      box-shadow: 0 5px 15px rgba(141, 110, 99, 0.2);
       background-color: white;
-      padding: 5px;
+      padding: 4px;
+      z-index: 2;
+    }
+    
+    .logo-bg {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, #FF8A65, #FFA726);
+      border-radius: 50%;
+      filter: blur(8px);
+      opacity: 0.3;
+      z-index: 1;
     }
     
     h1 {
-      font-size: 32px;
-      color: var(--primary);
+      font-size: 26px;
+      color: #5D4037;
       text-align: center;
       margin: 10px 0;
-      font-weight: 700;
+      font-weight: 800;
       position: relative;
       display: inline-block;
     }
@@ -118,163 +107,187 @@
       bottom: -10px;
       right: 50%;
       transform: translateX(50%);
-      width: 120px;
-      height: 4px;
-      background: linear-gradient(90deg, var(--primary), var(--accent));
+      width: 100px;
+      height: 3px;
+      background: linear-gradient(90deg, #FF8A65, #FFA726);
       border-radius: 2px;
     }
     
     .description {
       text-align: center;
-      color: var(--dark);
-      font-size: 18px;
-      margin: 20px 0;
+      color: #8D6E63;
+      font-size: 16px;
+      margin: 20px 0 15px;
       line-height: 1.6;
-      padding: 0 15px;
+      padding: 0 10px;
     }
     
-    /* حقل الإدخال */
     .input-group {
-      margin: 25px 0;
+      margin: 20px 0;
       position: relative;
     }
     
     .input-group label {
       display: block;
       margin-bottom: 10px;
-      font-weight: 600;
-      color: var(--primary);
-      font-size: 18px;
+      font-weight: 700;
+      color: #5D4037;
+      font-size: 16px;
+      padding-right: 8px;
     }
     
     .input-group input {
       width: 100%;
-      padding: 16px 20px;
-      font-size: 18px;
-      font-family: 'Tajawal', sans-serif;
-      border: 2px solid #ddd;
+      padding: 15px 20px;
+      font-size: 17px;
+      border: 2px solid #D7CCC8;
       border-radius: 12px;
       background: rgba(255, 255, 255, 0.8);
-      color: var(--input-color);
+      color: #5d4037;
       font-weight: bold;
       outline: none;
+      box-shadow: 0 4px 10px rgba(141, 110, 99, 0.1);
     }
     
     .input-group input:focus {
-      border-color: var(--primary);
-      box-shadow: 0 0 0 3px rgba(139, 69, 19, 0.2);
+      border-color: #FFA726;
+      box-shadow: 0 0 0 3px rgba(255, 167, 38, 0.25);
     }
     
     .input-group .unit {
       position: absolute;
-      left: 20px;
-      top: 50px;
-      background: var(--primary);
+      left: 15px;
+      top: 48px;
+      background: #FF8A65;
       color: white;
-      padding: 5px 15px;
+      padding: 6px 15px;
       border-radius: 8px;
-      font-weight: 600;
+      font-weight: 700;
+      font-size: 14px;
+      box-shadow: 0 3px 6px rgba(255, 138, 101, 0.2);
     }
     
-    /* زر الحساب */
     .btn-calculate {
-      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      background: linear-gradient(135deg, #FF8A65, #FFA726);
       color: white;
       padding: 16px;
       border: none;
       width: 100%;
-      font-size: 20px;
-      font-family: 'Tajawal', sans-serif;
-      font-weight: 700;
+      font-size: 18px;
+      font-weight: 800;
       border-radius: 12px;
       cursor: pointer;
-      margin: 10px 0 20px;
-      box-shadow: 0 5px 15px rgba(139, 69, 19, 0.3);
+      margin: 15px 0 20px;
+      box-shadow: 0 6px 15px rgba(255, 138, 101, 0.3);
       display: flex;
       justify-content: center;
       align-items: center;
       gap: 10px;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .btn-calculate::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transition: 0.5s;
     }
     
     .btn-calculate:hover {
       transform: translateY(-3px);
-      box-shadow: 0 8px 20px rgba(139, 69, 19, 0.4);
+      box-shadow: 0 8px 18px rgba(255, 138, 101, 0.4);
+    }
+    
+    .btn-calculate:hover::before {
+      left: 100%;
     }
     
     .btn-calculate:active {
       transform: translateY(1px);
+      box-shadow: 0 3px 8px rgba(255, 138, 101, 0.3);
     }
     
-    /* نتيجة الحساب */
     .result {
-      background: rgba(255, 248, 220, 0.6);
-      border-radius: 15px;
-      padding: 25px;
+      background: rgba(255, 248, 240, 0.7);
+      border-radius: 16px;
+      padding: 20px;
       margin-top: 20px;
       display: none;
-      border: 1px solid rgba(139, 69, 19, 0.1);
-    }
-    
-    .dark-mode .result {
-      background: rgba(30, 30, 30, 0.7);
+      border: 1px solid #D7CCC8;
+      box-shadow: 0 5px 15px rgba(141, 110, 99, 0.1);
     }
     
     .result h3 {
       margin-top: 0;
-      color: var(--primary);
-      font-size: 24px;
+      color: #5D4037;
+      font-size: 20px;
       margin-bottom: 20px;
       display: flex;
       align-items: center;
       gap: 10px;
+      padding-bottom: 10px;
+      border-bottom: 2px dashed #D7CCC8;
     }
     
     .item {
       margin: 12px 0;
-      padding: 12px 15px;
-      background: rgba(255, 255, 255, 0.7);
-      border-radius: 10px;
+      padding: 14px;
+      background: rgba(255, 255, 255, 0.85);
+      border-radius: 12px;
       display: flex;
       justify-content: space-between;
-      font-size: 18px;
-      font-weight: 500;
-      color: var(--dark);
-      border-left: 4px solid var(--accent);
-    }
-    
-    .dark-mode .item {
-      background: rgba(50, 50, 50, 0.5);
+      font-size: 16px;
+      font-weight: 600;
+      color: #4E342E;
+      border-left: 4px solid #FFA726;
+      box-shadow: 0 4px 10px rgba(141, 110, 99, 0.1);
     }
     
     .item .ingredient {
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 10px;
     }
     
     .item .value {
-      font-weight: 700;
-      color: var(--primary);
+      font-weight: 800;
+      color: #FF8A65;
+      font-size: 15px;
+      text-align: left;
+      min-width: 90px;
     }
     
     .ingredient-icon {
-      color: var(--accent);
-      font-size: 20px;
+      color: #FFA726;
+      font-size: 18px;
+      width: 26px;
+      text-align: center;
+      background: rgba(255, 167, 38, 0.1);
+      padding: 6px;
+      border-radius: 8px;
     }
     
     .footer {
       text-align: center;
-      margin-top: 30px;
-      color: var(--dark);
-      font-size: 16px;
+      margin-top: 25px;
+      color: #8D6E63;
+      font-size: 14px;
       padding-top: 15px;
-      border-top: 1px solid rgba(139, 69, 19, 0.1);
+      border-top: 1px solid #D7CCC8;
       display: flex;
-      justify-content: space-between;
-      align-items: center;
+      flex-direction: column;
+      gap: 15px;
     }
     
-    /* تأثيرات للنتيجة */
+    .footer p {
+      margin: 0;
+    }
+    
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: translateY(0); }
@@ -285,326 +298,183 @@
       animation: fadeIn 0.5s ease-out;
     }
     
-    /* تصميم متجاوب */
-    @media (max-width: 600px) {
-      body {
+    .portion-group {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 20px;
+      padding: 15px;
+      background: rgba(255, 248, 240, 0.6);
+      border-radius: 12px;
+      border: 1px solid #D7CCC8;
+      box-shadow: 0 4px 10px rgba(141, 110, 99, 0.1);
+    }
+    
+    .portion-label {
+      font-weight: 700;
+      color: #5D4037;
+      font-size: 16px;
+      flex: 1;
+    }
+    
+    .portion-input {
+      width: 80px;
+      padding: 12px;
+      border: 2px solid #D7CCC8;
+      border-radius: 10px;
+      font-size: 17px;
+      font-weight: bold;
+      text-align: center;
+      background: rgba(255, 255, 255, 0.8);
+      color: #5d4037;
+      box-shadow: 0 4px 10px rgba(141, 110, 99, 0.1);
+    }
+    
+    .portion-input:focus {
+      border-color: #FFA726;
+      box-shadow: 0 0 0 3px rgba(255, 167, 38, 0.25);
+    }
+    
+    .footer-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    
+    .manage-btn, .history-btn {
+      padding: 12px 20px;
+      border-radius: 10px;
+      font-size: 15px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    
+    .manage-btn {
+      background: linear-gradient(135deg, #7E57C2, #5E35B1);
+      color: white;
+    }
+    
+    .history-btn {
+      background: linear-gradient(135deg, #42A5F5, #1976D2);
+      color: white;
+    }
+    
+    .manage-btn:hover, .history-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    }
+    
+    .manage-btn:active, .history-btn:active {
+      transform: translateY(1px);
+    }
+    
+    @media (max-width: 360px) {
+      .container {
         padding: 15px;
       }
       
-      .container {
-        padding: 25px 20px;
-      }
-      
       h1 {
-        font-size: 26px;
-      }
-      
-      .logo {
-        width: 100px;
-        height: 100px;
+        font-size: 24px;
       }
       
       .description {
-        font-size: 16px;
+        font-size: 15px;
       }
       
       .input-group input {
-        padding: 14px 18px;
+        padding: 13px 18px;
         font-size: 16px;
       }
       
       .btn-calculate {
+        font-size: 17px;
         padding: 14px;
-        font-size: 18px;
+      }
+      
+      .portion-input {
+        width: 70px;
+        padding: 10px;
+        font-size: 16px;
       }
       
       .result {
-        padding: 20px;
-      }
-      
-      .result h3 {
-        font-size: 20px;
+        padding: 15px;
       }
       
       .item {
-        font-size: 16px;
-        padding: 10px 12px;
+        font-size: 15px;
+        padding: 12px;
       }
       
-      .footer {
-        flex-direction: column;
-        gap: 10px;
+      .ingredient-icon {
+        font-size: 16px;
+        width: 24px;
       }
     }
     
-    /* واجهة إدارة المكونات */
-    .manage-btn {
-      background: linear-gradient(135deg, #6a4c93, #8e44ad);
-      color: white;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 8px;
-      font-size: 16px;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-weight: 600;
-    }
-    
-    .history-btn {
-      background: linear-gradient(135deg, #3a7bd5, #00d2ff);
-      color: white;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 8px;
-      font-size: 16px;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-weight: 600;
-    }
-    
-    .manage-btn:hover {
-      background: linear-gradient(135deg, #5a3c83, #7d34a8);
-      transform: translateY(-2px);
-    }
-    
-    .history-btn:hover {
-      background: linear-gradient(135deg, #2a6bc5, #00c2ef);
-      transform: translateY(-2px);
-    }
-    
-    .modal {
-      display: none;
-      position: fixed;
-      z-index: 1000;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.7);
-      overflow: auto;
-      justify-content: center;
-      align-items: center;
-    }
-    
-    .modal-content {
-      background: var(--card-bg);
-      margin: 5% auto;
-      padding: 30px;
-      border-radius: 20px;
-      width: 90%;
-      max-width: 700px;
-      max-height: 80vh;
-      overflow-y: auto;
-      position: relative;
-      box-shadow: 0 10px 50px rgba(0, 0, 0, 0.3);
-      border: 2px solid var(--accent);
-    }
-    
-    .close-btn {
-      position: absolute;
-      top: 20px;
-      left: 20px;
-      font-size: 30px;
-      color: var(--primary);
-      cursor: pointer;
-    }
-    
-    .close-btn:hover {
-      color: var(--accent);
-    }
-    
-    .modal-title {
-      text-align: center;
-      margin: 15px 0 30px;
-      color: var(--primary);
-      font-size: 28px;
-    }
-    
-    .ingredient-form {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 15px;
-      margin-bottom: 30px;
-      padding: 20px;
-      background: rgba(255, 248, 220, 0.3);
-      border-radius: 15px;
-    }
-    
-    .ingredient-form input {
-      flex: 1;
-      min-width: 200px;
-      padding: 12px 15px;
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      font-size: 16px;
-      font-family: 'Tajawal', sans-serif;
-    }
-    
-    .add-btn {
-      background: var(--success);
-      color: white;
-      border: none;
-      padding: 12px 25px;
-      border-radius: 8px;
-      cursor: pointer;
-      font-weight: bold;
-      font-size: 16px;
-    }
-    
-    .add-btn:hover {
-      background: #3d8b40;
-    }
-    
-    .ingredients-list {
-      margin-top: 20px;
-    }
-    
-    .ingredient-item {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 15px;
-      margin-bottom: 15px;
-      background: rgba(255, 255, 255, 0.5);
-      border-radius: 12px;
-      border-left: 4px solid var(--secondary);
-    }
-    
-    .history-item {
-      padding: 15px;
-      margin-bottom: 15px;
-      background: rgba(255, 255, 255, 0.5);
-      border-radius: 12px;
-      border-left: 4px solid var(--secondary);
-    }
-    
-    .dark-mode .ingredient-item,
-    .dark-mode .history-item {
-      background: rgba(50, 50, 50, 0.3);
-    }
-    
-    .ingredient-info {
-      flex: 1;
-    }
-    
-    .ingredient-name {
-      font-weight: bold;
-      font-size: 18px;
-      color: var(--primary);
-    }
-    
-    .ingredient-amount,
-    .history-details {
-      color: var(--dark);
-      font-size: 16px;
-    }
-    
-    .history-date {
-      font-weight: bold;
-      color: var(--primary);
-      margin-bottom: 5px;
-    }
-    
-    .ingredient-actions {
-      display: flex;
-      gap: 10px;
-    }
-    
-    .edit-btn, .delete-btn {
-      padding: 8px 15px;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-      font-size: 14px;
-      display: flex;
-      align-items: center;
-      gap: 5px;
-    }
-    
-    .edit-btn {
-      background: #ffc107;
-      color: #333;
-    }
-    
-    .delete-btn {
-      background: #f44336;
-      color: white;
-    }
-    
-    .edit-btn:hover, .delete-btn:hover {
-      opacity: 0.9;
-    }
-    
-    .save-btn {
-      background: linear-gradient(135deg, #2e7d32, #4CAF50);
-      color: white;
-      padding: 12px 25px;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      font-weight: bold;
-      font-size: 16px;
-      margin-top: 20px;
-      display: block;
-      margin-left: auto;
-    }
-    
-    .save-btn:hover {
-      background: linear-gradient(135deg, #1b5e20, #388e3c);
-    }
-    
-    .tabs {
-      display: flex;
-      margin-bottom: 20px;
-      border-bottom: 1px solid #ddd;
-    }
-    
-    .tab-btn {
-      padding: 10px 20px;
-      background: none;
-      border: none;
-      cursor: pointer;
-      font-size: 16px;
-      font-weight: 600;
-      color: var(--dark);
-      border-bottom: 3px solid transparent;
-    }
-    
-    .tab-btn.active {
-      color: var(--primary);
-      border-bottom: 3px solid var(--primary);
-    }
-    
-    .tab-content {
-      display: none;
-    }
-    
-    .tab-content.active {
-      display: block;
+    @media (min-width: 768px) {
+      .container {
+        max-width: 600px;
+        padding: 30px;
+      }
+      
+      h1 {
+        font-size: 32px;
+      }
+      
+      .logo-container {
+        width: 130px;
+        height: 130px;
+      }
+      
+      .logo {
+        width: 110px;
+        height: 110px;
+      }
+      
+      .description {
+        font-size: 18px;
+      }
+      
+      .footer-buttons {
+        flex-direction: row;
+        justify-content: center;
+      }
     }
   </style>
 </head>
 <body>
   <div class="container">
     <div class="header">
-      <img src="https://i.ibb.co/cHrQjBG/logo.jpg" alt="كافتيريا أبو حيدر" class="logo">
+      <div class="logo-container">
+        <div class="logo-bg"></div>
+        <img src="https://i.ibb.co/cHrQjBG/logo.jpg" alt="كافتيريا أبو حيدر" class="logo">
+      </div>
 
-      <h1>حساب مقادير بابا غنوج</h1>
-      <p class="description">أدخل كمية بابا غنوج المراد إعدادها (بالكيلو) وسنقوم بحساب جميع المقادير اللازمة لك</p>
+      <h1>حاسبة مقادير بابا غنوج</h1>
+      <p class="description">أدخل الكمية المطلوبة وعدد الحلل، وسنقوم بحساب جميع المقادير اللازمة لك بدقة متناهية</p>
     </div>
     
     <div class="input-group">
-      <label for="quantity">الكمية المطلوبة (كيلوجرام)</label>
-      <input type="number" id="quantity" min="1" step="0.1" placeholder="مثال: 50" value="50">
+      <label for="quantity"><i class="fas fa-weight-hanging"></i> الكمية المطلوبة (كيلوجرام)</label>
+      <input type="number" id="quantity" min="1" step="0.1" placeholder="مثال: 50">
       <div class="unit">كجم</div>
     </div>
     
-    <button class="btn-calculate" onclick="احسب()">
-      <i class="fas fa-calculator"></i> احسب المقادير
+    <div class="portion-group">
+      <span class="portion-label"><i class="fas fa-utensils"></i> عدد الحلل:</span>
+      <input type="number" id="portions" min="1" step="1" value="3" class="portion-input">
+    </div>
+    
+    <button class="btn-calculate" onclick="calculate()">
+      <i class="fas fa-calculator"></i> احسب المقادير الآن
     </button>
     
     <div class="result" id="output">
@@ -612,7 +482,7 @@
     </div>
     
     <div class="footer">
-      <p>©  كافتيريا أبو حيدر  تأسست ١٩٦٠| جميع الحقوق محفوظة</p>
+      <p>© كافتيريا أبو حيدر | تأسست ١٩٦٠ | جميع الحقوق محفوظة</p>
       <div class="footer-buttons">
         <button class="history-btn" onclick="openHistoryModal()">
           <i class="fas fa-history"></i> سجل التغييرات
@@ -675,7 +545,7 @@
   
   <script>
     // بيانات المكونات الافتراضية
-    let المقادير = {
+    let ingredients = {
       "طحينة": 22.0,
       "ليمون": 6.5,
       "ثوم": 0.750,
@@ -684,99 +554,117 @@
       "شطة": 0.120
     };
     
+    // رموز المكونات
+    const ingredientIcons = {
+      "طحينة": "fas fa-jar",
+      "ليمون": "fas fa-lemon",
+      "ثوم": "fas fa-garlic",
+      "كمون": "fas fa-mortar-pestle",
+      "ملح": "fas fa-cubes",
+      "شطة": "fas fa-pepper-hot",
+      "زبادي": "fas fa-cheese"
+    };
+    
     // سجلات التاريخ
-    let سجل_التغييرات = [];
-    let سجل_الحسابات = [];
+    let changesHistory = [];
+    let calculationsHistory = [];
     
     // ثوابت أخرى
-    const زبادي_علب_لكل_100كيلو = 30;
+    const yogurtPer100Kg = 30;
     
     // تحميل البيانات المحفوظة عند بدء التحميل
     document.addEventListener('DOMContentLoaded', function() {
       loadIngredients();
       loadHistory();
-      // حساب المقادير تلقائياً عند التحميل
-      setTimeout(احسب, 500);
     });
     
     // دالة الحساب
-    function احسب() {
-      const كمية = parseFloat(document.getElementById('quantity').value);
-      if (isNaN(كمية) || كمية <= 0) {
+    function calculate() {
+      const quantity = parseFloat(document.getElementById('quantity').value);
+      const portions = parseInt(document.getElementById('portions').value);
+      
+      if (isNaN(quantity) || quantity <= 0) {
         alert("❌ الرجاء إدخال كمية صحيحة أكبر من الصفر");
         return;
       }
+      
+      if (isNaN(portions) || portions <= 0) {
+        alert("❌ الرجاء إدخال عدد حلل صحيح أكبر من الصفر");
+        return;
+      }
 
-      const نسبة = كمية / 100;
-      const زبادي_علب = Math.round(زبادي_علب_لكل_100كيلو * نسبة * 100) / 100;
+      const ratio = quantity / 100;
+      const yogurtBoxes = Math.round(yogurtPer100Kg * ratio * 100) / 100;
 
-      let النتيجة = `<h3><i class="fas fa-list"></i> المقادير المطلوبة لـ ${كمية} كيلو بابا غنوج:</h3>`;
+      let resultHTML = `<h3><i class="fas fa-list"></i> المقادير المطلوبة لـ ${quantity} كيلو بابا غنوج:</h3>`;
       
       // حساب كل مكون
-      for (let مكون in المقادير) {
-        let قيمة = المقادير[مكون] * نسبة;
-        النتيجة += `
+      for (let ingredient in ingredients) {
+        let value = ingredients[ingredient] * ratio;
+        const icon = ingredientIcons[ingredient] || "fas fa-circle";
+        resultHTML += `
           <div class="item">
             <div class="ingredient">
-              <i class="fas fa-seedling ingredient-icon"></i>
-              ${مكون}
+              <i class="${icon} ingredient-icon"></i>
+              ${ingredient}
             </div>
             <div class="value">
-              ${قيمة < 1 ? (قيمة * 1000).toFixed(2) + ' جرام' : قيمة.toFixed(2) + ' كيلو'}
+              ${value < 1 ? (value * 1000).toFixed(2) + ' جرام' : value.toFixed(2) + ' كيلو'}
             </div>
           </div>
         `;
       }
       
       // إضافة الزبادي
-      النتيجة += `
+      resultHTML += `
         <div class="item">
           <div class="ingredient">
-            <i class="fas fa-seedling ingredient-icon"></i>
+            <i class="${ingredientIcons["زبادي"]} ingredient-icon"></i>
             زبادي
           </div>
           <div class="value">
-            ${زبادي_علب} علبة
+            ${yogurtBoxes} علبة
           </div>
         </div>
       `;
 
-      // حساب لكل حلة (ثلث الكمية)
-      النتيجة += `<h3><i class="fas fa-utensils"></i> المقادير لكل حلة (ثلث الكمية):</h3>`;
-      for (let مكون in المقادير) {
-        let قيمة = (المقادير[مكون] * نسبة) / 3;
-        النتيجة += `
+      // حساب لكل حلة (كمية مقسمة على عدد الحلل)
+      resultHTML += `<h3><i class="fas fa-utensils"></i> المقادير لكل حلة (${portions} حلل):</h3>`;
+      for (let ingredient in ingredients) {
+        let value = (ingredients[ingredient] * ratio) / portions;
+        const icon = ingredientIcons[ingredient] || "fas fa-circle";
+        resultHTML += `
           <div class="item">
             <div class="ingredient">
-              <i class="fas fa-seedling ingredient-icon"></i>
-              ${مكون}
+              <i class="${icon} ingredient-icon"></i>
+              ${ingredient}
             </div>
             <div class="value">
-              ${قيمة < 1 ? (قيمة * 1000).toFixed(2) + ' جرام' : قيمة.toFixed(2) + ' كيلو'}
+              ${value < 1 ? (value * 1000).toFixed(2) + ' جرام' : value.toFixed(2) + ' كيلو'}
             </div>
           </div>
         `;
       }
       
       // الزبادي لكل حلة
-      النتيجة += `
+      resultHTML += `
         <div class="item">
           <div class="ingredient">
-            <i class="fas fa-seedling ingredient-icon"></i>
+            <i class="${ingredientIcons["زبادي"]} ingredient-icon"></i>
             زبادي
           </div>
           <div class="value">
-            ${(زبادي_علب / 3).toFixed(2)} علبة
+            ${(yogurtBoxes / portions).toFixed(2)} علبة
           </div>
         </div>
       `;
 
       const out = document.getElementById('output');
-      out.innerHTML = النتيجة;
+      out.innerHTML = resultHTML;
       out.classList.add('show-result');
       
       // تسجيل عملية الحساب
-      تسجيل_الحساب(كمية);
+      logCalculation(quantity, portions);
       
       // تمرير للنتيجة
       out.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -825,19 +713,19 @@
       const list = document.getElementById('ingredientsList');
       list.innerHTML = '';
       
-      for (let مكون in المقادير) {
+      for (let ingredient in ingredients) {
         const item = document.createElement('div');
         item.className = 'ingredient-item';
         item.innerHTML = `
           <div class="ingredient-info">
-            <div class="ingredient-name">${مكون}</div>
-            <div class="ingredient-amount">${المقادير[مكون]} كجم لكل 100 كيلو</div>
+            <div class="ingredient-name">${ingredient}</div>
+            <div class="ingredient-amount">${ingredients[ingredient]} كجم لكل 100 كيلو</div>
           </div>
           <div class="ingredient-actions">
-            <button class="edit-btn" onclick="editIngredient('${مكون}')">
+            <button class="edit-btn" onclick="editIngredient('${ingredient}')">
               <i class="fas fa-edit"></i> تعديل
             </button>
-            <button class="delete-btn" onclick="deleteIngredient('${مكون}')">
+            <button class="delete-btn" onclick="deleteIngredient('${ingredient}')">
               <i class="fas fa-trash"></i> حذف
             </button>
           </div>
@@ -855,7 +743,7 @@
       calculationsList.innerHTML = '';
       
       // عرض تعديلات المكونات
-      سجل_التغييرات.forEach(record => {
+      changesHistory.forEach(record => {
         const item = document.createElement('div');
         item.className = 'history-item';
         item.innerHTML = `
@@ -866,7 +754,7 @@
       });
       
       // عرض عمليات الحساب
-      سجل_الحسابات.forEach(record => {
+      calculationsHistory.forEach(record => {
         const item = document.createElement('div');
         item.className = 'history-item';
         item.innerHTML = `
@@ -890,10 +778,10 @@
         return;
       }
       
-      المقادير[name] = amount;
+      ingredients[name] = amount;
       
       // تسجيل التغيير
-      تسجيل_التغيير(`تم إضافة مكون جديد: ${name} - ${amount} كجم لكل 100 كيلو`);
+      logChange(`تم إضافة مكون جديد: ${name} - ${amount} كجم لكل 100 كيلو`);
       
       // مسح حقول الإدخال
       nameInput.value = '';
@@ -911,15 +799,15 @@
       const newName = prompt('الرجاء إدخال الاسم الجديد للمكون:', ingredientName);
       if (!newName) return;
       
-      const newAmount = parseFloat(prompt('الرجاء إدخال الكمية الجديدة لكل 100 كيلو:', المقادير[ingredientName]));
+      const newAmount = parseFloat(prompt('الرجاء إدخال الكمية الجديدة لكل 100 كيلو:', ingredients[ingredientName]));
       if (isNaN(newAmount)) return;
       
       // تسجيل التغيير قبل التعديل
-      تسجيل_التغيير(`تم تعديل المكون من "${ingredientName}" إلى "${newName}" والكمية من ${المقادير[ingredientName]} إلى ${newAmount}`);
+      logChange(`تم تعديل المكون من "${ingredientName}" إلى "${newName}" والكمية من ${ingredients[ingredientName]} إلى ${newAmount}`);
       
       // حذف القديم وإضافة الجديد
-      delete المقادير[ingredientName];
-      المقادير[newName] = newAmount;
+      delete ingredients[ingredientName];
+      ingredients[newName] = newAmount;
       
       renderIngredientsList();
     }
@@ -928,17 +816,17 @@
     function deleteIngredient(ingredientName) {
       if (confirm(`هل أنت متأكد من حذف "${ingredientName}"؟`)) {
         // تسجيل التغيير قبل الحذف
-        تسجيل_التغيير(`تم حذف المكون: ${ingredientName} - ${المقادير[ingredientName]} كجم لكل 100 كيلو`);
+        logChange(`تم حذف المكون: ${ingredientName} - ${ingredients[ingredientName]} كجم لكل 100 كيلو`);
         
-        delete المقادير[ingredientName];
+        delete ingredients[ingredientName];
         renderIngredientsList();
       }
     }
     
     // تسجيل التغييرات في المكونات
-    function تسجيل_التغيير(إجراء) {
-      const الآن = new Date();
-      const تاريخ = الآن.toLocaleString('ar-EG', {
+    function logChange(action) {
+      const now = new Date();
+      const date = now.toLocaleString('ar-EG', {
         weekday: 'long',
         year: 'numeric',
         month: 'long',
@@ -948,9 +836,9 @@
         second: '2-digit'
       });
       
-      سجل_التغييرات.unshift({
-        date: تاريخ,
-        action: إجراء
+      changesHistory.unshift({
+        date: date,
+        action: action
       });
       
       // حفظ السجل
@@ -958,9 +846,9 @@
     }
     
     // تسجيل عمليات الحساب
-    function تسجيل_الحساب(كمية) {
-      const الآن = new Date();
-      const تاريخ = الآن.toLocaleString('ar-EG', {
+    function logCalculation(quantity, portions) {
+      const now = new Date();
+      const date = now.toLocaleString('ar-EG', {
         weekday: 'long',
         year: 'numeric',
         month: 'long',
@@ -970,9 +858,9 @@
         second: '2-digit'
       });
       
-      سجل_الحسابات.unshift({
-        date: تاريخ,
-        action: `تم حساب مقادير ${كمية} كيلو من البابا غنوج`
+      calculationsHistory.unshift({
+        date: date,
+        action: `تم حساب مقادير ${quantity} كيلو من البابا غنوج مقسمة على ${portions} حلل`
       });
       
       // حفظ السجل
@@ -981,23 +869,23 @@
     
     // حفظ المكونات في localStorage
     function saveIngredients() {
-      localStorage.setItem('baba_ghanoush_ingredients', JSON.stringify(المقادير));
-      تسجيل_التغيير('تم حفظ جميع التغييرات على المكونات');
+      localStorage.setItem('baba_ghanoush_ingredients', JSON.stringify(ingredients));
+      logChange('تم حفظ جميع التغييرات على المكونات');
       alert('تم حفظ التغييرات بنجاح!');
       closeModal();
     }
     
     // حفظ السجل في localStorage
     function saveHistory() {
-      localStorage.setItem('baba_ghanoush_changes_history', JSON.stringify(سجل_التغييرات));
-      localStorage.setItem('baba_ghanoush_calculations_history', JSON.stringify(سجل_الحسابات));
+      localStorage.setItem('baba_ghanoush_changes_history', JSON.stringify(changesHistory));
+      localStorage.setItem('baba_ghanoush_calculations_history', JSON.stringify(calculationsHistory));
     }
     
     // تحميل المكونات من localStorage
     function loadIngredients() {
       const savedIngredients = localStorage.getItem('baba_ghanoush_ingredients');
       if (savedIngredients) {
-        المقادير = JSON.parse(savedIngredients);
+        ingredients = JSON.parse(savedIngredients);
       }
     }
     
@@ -1007,23 +895,13 @@
       const savedCalculations = localStorage.getItem('baba_ghanoush_calculations_history');
       
       if (savedChanges) {
-        سجل_التغييرات = JSON.parse(savedChanges);
+        changesHistory = JSON.parse(savedChanges);
       }
       
       if (savedCalculations) {
-        سجل_الحسابات = JSON.parse(savedCalculations);
+        calculationsHistory = JSON.parse(savedCalculations);
       }
     }
-    
-    // الكشف عن وضع الليل وإضافة كلاس إذا كان مفعلاً
-    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-      document.body.classList.add('dark-mode');
-    }
-    
-    // تغيير وضع الليل عند تغيير النظام
-    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
-      document.body.classList.toggle('dark-mode', e.matches);
-    });
   </script>
 </body>
 </html>
